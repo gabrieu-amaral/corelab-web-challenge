@@ -1,0 +1,51 @@
+footer {
+    background-color: #65DCC7;
+    position:absolute;
+    bottom: auto;
+    display:flex;
+    align-items: center;
+    width: 75%;
+}
+
+.insideFooter {
+    padding: 40px;
+    display: block;
+    margin-left: auto;
+    text-align: end;
+    
+}
+
+.copyText{
+    color: rgb(93, 105, 100);
+}
+
+a{
+    color: #43887c;
+    text-decoration: none;
+}
+
+.imgCarro{
+    position: absolute;
+    height: 200px;
+    margin: 30px;
+    margin-bottom: 60px;
+    margin-right: auto;
+}
+
+@media (max-width: 999px) {
+    .imgCarro{
+        height: 120px;
+    }
+
+    footer {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .imgCarro{
+        height: 100px;
+        margin-left: 33%;
+        margin-bottom: 40%;
+    }
+}

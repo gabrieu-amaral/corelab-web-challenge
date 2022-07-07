@@ -1,0 +1,25 @@
+.searchComponent {
+  display: flex;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.imgSettings {
+  width: 55px;
+  height: 40px;
+  margin: auto;
+}
+
+.imgSettings:hover{
+  background-color:rgb(204, 239, 219);
+}
+
+.svgA {
+  position: absolute;
+  display: flex;
+  z-index: 20;
+
+  padding-top: 18px;
+  margin-left: 30px;
+
+}

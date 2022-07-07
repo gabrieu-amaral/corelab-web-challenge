@@ -7,10 +7,84 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   height: 100vh;
-  width: 100vw;
+  width: 75%;
+  margin: auto;
+
+  background-color: whitesmoke;
+  
+  -webkit-box-shadow: 0px 0px 46px 7px rgba(0, 0, 0, 0.04); 
+  box-shadow: 0px 0px 46px 7px rgba(0, 0, 0, 0.008);
+
+}
+
+@media (max-width: 999px) {
+  body {
+      width: 100%;
+  }
+}
+
+:root {
+
+  background-color: rgb(221, 221, 221);
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+input {
+  border-radius: 50px;
+  height: 50px;
+  width: 90%;
+
+  background-color: rgb(214, 241, 236);
+  border: 0;
+
+  position: relative;
+  display: flex;
+
+  ::placeholder{
+    font-size: larger;
+  }
+}
+
+
+:placeholder-shown {
+  padding-left: 6vh;
+}
+
+.buttonA {
+  border-radius: 50px;
+  height: 50px;
+  width: 220px;
+  margin: auto;
+  background-color: #65DCC7;
+  border: 0;
+  color: rgb(32, 57, 49);
+  font-weight: bold;
+  transition: .40s;
+  
+}
+
+.activeX {
+  border-radius: 100%;
+  width: 50px;
+  background-color: rgb(184, 184, 184);
+  margin-left: auto;
+  justify-items: end;
+  margin-left: 90%;
+}
+
+button:hover {
+  background-color: #28b79d;
+  color:#d7f3ee
+
+} 
+
+.svgX {
+  color: #d7f3ee;
+  transition: .80s;
+  height: 30px !important;
 }
