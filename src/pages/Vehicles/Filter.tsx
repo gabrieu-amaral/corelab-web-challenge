@@ -6,7 +6,7 @@ function Filter(){
     return(
         <div className={styles.box}>
             <span>
-                <h2>Marca</h2>
+                <h2>Nome</h2>
                 <input type="text"  className={styles.spanB}/>
 
                 <h2>Cor</h2>

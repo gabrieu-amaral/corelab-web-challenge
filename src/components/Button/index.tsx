@@ -7,24 +7,19 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 interface IButton {
   onClick: () => void;
   text: string;
+  openNewCar: boolean;
 }
 
 
 const Button = (props: IButton) => {
-  
-
-  const [openNewCar, setOpenNewCar] = useState(true)
   const showNewCar = () => {
-    setOpenNewCar(!openNewCar);
     props.onClick()
   }
 
 
   return (
   <>
-    <button onClick={showNewCar} className={styles.buttonA + " " + (!openNewCar ? styles.activeX : "")}>{!openNewCar ? <FontAwesomeIcon icon={faXmark} className={styles.svgX}/> : props.text}</button>
-
-    { openNewCar ? "": ( <NewCar /> )}
+    <button onClick={showNewCar} className={styles.buttonA + " " + (!props.openNewCar ? styles.activeX : "")}>{!props.openNewCar ? <FontAwesomeIcon icon={faXmark} className={styles.svgX}/> : props.text}</button>
   </>
 
   )

@@ -1,31 +1,49 @@
 import { IVehicle } from "../../types/Vehicle"
 import styles from"./Filter.module.scss"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios";
-import { postVehicle } from "../../lib/api";
+import { postVehicle, editVehicle } from "../../lib/api";
 
-function NewCar(){
+interface IForm {
+    vehicleUpdated: any;
+}
+
+function NewCar(props:IForm){
+
+    useEffect(() => {
+
+        if (props.vehicleUpdated) {
+            setForm(() => props.vehicleUpdated)
+        }
+      }, []);
 
 
     const vehicle: IVehicle = 
         {
           id: 1,
-          name: 'First Vehicle',
-          description: 'This is a description of first vehicle',
-          plate: 'DDT-0012',
+          name: '',
+          description: '',
+          plate: '',
           isFavorite: false,
-          year: 2018,
-          color: '#ff00ff',
-          price: 22000,
+          year: 0,
+          color: '',
+          price: 0,
           createdAt: new Date()
         }
       
 
         const save = () => {
-            postVehicle(form)
+            if (props.vehicleUpdated) {
+                editVehicle(form, form.id)
+            }else{
+                postVehicle(form)
+            }
+            
         }
+      
         const [form, setForm] = useState(vehicle);
+
         const handleChange = (e:any) => {
             console.log(e.target.getAttribute("name"))
             switch (e.target.getAttribute("name")){
@@ -33,8 +51,8 @@ function NewCar(){
                     form["name"] = e.target.value
                     break; 
 
-                case "description":
-                    form["description"] = e.target.value
+                case "price":
+                    form["price"] = e.target.value
                     break; 
 
                 case "color":
@@ -45,8 +63,8 @@ function NewCar(){
                     form["year"] = e.target.value
                     break; 
 
-                case "plate":
-                    form["plate"] = e.target.value
+                case "description":
+                    form["description"] = e.target.value
                     break; 
             }
             
@@ -54,28 +72,28 @@ function NewCar(){
         }
 
     return(
-        <div className={styles.box}>
+        <form className={styles.box} onSubmit={save}>
             <span>
                 <h2>Nome</h2>
-                <input type="text" name="name" onChange={handleChange} className={styles.spanB}/>
+                <input type="text" name="name" placeholder={form.name} onChange={handleChange} className={styles.spanB} required/>
 
-                <h2>Marca</h2>
-                <input type="text" name="description" onChange={handleChange} className={styles.spanB}/>
+                <h2>Preço</h2>
+                <input type="number" name="price" value={form.price} onChange={handleChange} className={styles.spanB}required/>
 
                 <h2>Cor</h2>
-                <input type="color" name="color" onChange={handleChange} className={styles.spanB}/>
+                <input type="color" name="color" value={form.color} onChange={handleChange} className={styles.spanB} required/>
 
                 <h2>Ano</h2>
-                <input type="text" name="year" onChange={handleChange} className={styles.spanB}/>
+                <input type="text" name="year" value={form.year} onChange={handleChange} className={styles.spanB} required/>
                 
-                <h2>Placa</h2>
-                <input type="text" name="plate" onChange={handleChange} className={styles.spanB}/>
+                <h2>Descrição</h2>
+                <input type="text" name="description" value={form.description} onChange={handleChange} className={styles.spanB}required/>
 
                 <div className={styles.buttonSave}>
-                    <button onClick={save} className={styles.buttonB}>Salvar</button>
+                    <button className={styles.buttonB}>Salvar</button>
                 </div>
             </span>
-        </div>
+        </form>
     )
 }
 

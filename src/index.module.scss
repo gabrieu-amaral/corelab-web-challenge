@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  height: 100vh;
+  height: 100%;
   width: 75%;
   margin: auto;
 
@@ -52,7 +52,7 @@ input {
 
 
 :placeholder-shown {
-  padding-left: 6vh;
+  padding-left: 12vh;
 }
 
 .buttonA {
