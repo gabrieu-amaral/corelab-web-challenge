@@ -8,7 +8,7 @@ export const getVehicles = async () => {
   return axios.get(API+"/vehicles");
 };
 
-export const postVehicle = async (data:IVehicle) => {
+export const postVehicle = async (data:any) => {
   return axios.post(API+"/vehicles", data)
 }
 

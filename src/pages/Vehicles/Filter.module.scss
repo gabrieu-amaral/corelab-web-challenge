@@ -9,6 +9,11 @@
     box-shadow: 0px 0px 30px 7px rgba(0, 0, 0, 0.050);
     transition: .40s;
 }
+
+.divBox{
+    width: inherit;
+    margin: auto;
+}
  
 
 .spanB {
@@ -23,6 +28,17 @@
 
     position: relative;
     display: flex;
+}
+
+.spanX {
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    appearance: none;
+    border: none;
+    border-radius: 50px;
+    width: 100%;
 }
 
 .divButton {

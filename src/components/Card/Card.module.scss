@@ -52,6 +52,7 @@
 
   .buttonsMini {
     height: 25px;
+    display: flex;
     border: 0;
     background-color: transparent;
   }
@@ -62,37 +63,28 @@
   }
 
   .loveIcon{
-    color: transparent;
-    
+    position: relative;
     width: 18px;
     height: 18px;
-
-    background: url("../../../public/heart.png") no-repeat;
-    background-position: -19px;
-    background-size: 8900%;
+    color: #f05454;
   }
 
-  .active {
+  .animationHeart{
+    z-index: 20;
+    position: absolute;
+    width: 18px;
     height: 18px;
-    color: #ff5269;
+    object-fit: none;
+    pointer-events: none;
+    margin: -77px;
+    
   }
- 
+
 
   .loveIcon :hover{
-    background-position: -19px;
-    animation: animate .8s steps(28) 1; 
+    
   }
 
-  @keyframes animate {
-    0%{
-      background-position: -19px;
-    }
-
-    100%{
-      background-position: right;
-    }
-
-  }
   
   .miniIcons :hover{
     color: #ffffff;

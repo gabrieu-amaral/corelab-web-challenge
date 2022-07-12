@@ -29,14 +29,17 @@ const Card = (props: ICard) => {
   const updateHandler = () => {
     favoriteVehicle(props.vehicle.id)
       props.update()
-      setFavoriteActive (!props.vehicle.isFavorite)  
+      setFavoriteActive (!props.vehicle.isFavorite) 
+      setAnimet({
+        ...animet, isStopped: !animet.isStopped,
+      })
     }
   const editHandler = () => {
       props.edit(props.vehicle)
     }
   
   const [animet, setAnimet] = useState ({
-    isStopped: false, isPaused: false
+    isStopped: true, isPaused: false
   })
 
   const defaultOptions = {
@@ -57,11 +60,12 @@ const Card = (props: ICard) => {
         <button  className={styles.buttonsMini}
         onClick={updateHandler}>
 
-            <div className={styles.loveIcon}
+            <div className={styles.animationHeart}
             >
               <Lottie options={defaultOptions}
               height={170}
               width={170}
+              
               isStopped={animet.isStopped}
               isPaused={animet.isPaused}/>
             </div>

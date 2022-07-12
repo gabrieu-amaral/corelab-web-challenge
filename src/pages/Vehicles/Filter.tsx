@@ -1,19 +1,35 @@
+import { useState } from "react"
 import styles from"./Filter.module.scss"
 
-function Filter(){
+interface ISearch {
+    search: Function
+  }
+
+function Filter(props:ISearch){
+
+    const [name, setName] = useState("")
+    const [color, setColor] = useState("")
+    const [year, setYear] = useState("")
+
+    const repasseFilter = () => {
+        props.search({
+            name:name,
+            year:year,
+        })
+    } 
 
 
     return(
         <div className={styles.box}>
             <span>
                 <h2>Nome</h2>
-                <input type="text"  className={styles.spanB}/>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value) } className={styles.spanB}/>
 
                 <h2>Cor</h2>
                 <input type="text"  className={styles.spanB}/>
 
                 <h2>Ano</h2>
-                <input type="text"  className={styles.spanB}/>
+                <input type="text"  value={year} onChange={(e) => setYear(e.target.value) } className={styles.spanB}/>
 
                 <div className={styles.flexLine}>
                     <h2 className={styles.h2A}>Preço mín.</h2>
@@ -24,7 +40,7 @@ function Filter(){
                 </div>
 
                 <div className={styles.buttonSave}>
-                    <button className={styles.buttonB}>Salvar</button>
+                    <button className={styles.buttonB} onClick={repasseFilter}>Salvar</button>
                 </div>
             </span>
         </div>

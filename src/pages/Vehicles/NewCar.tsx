@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios";
 import { postVehicle, editVehicle } from "../../lib/api";
+import styled from "styled-components";
 
 interface IForm {
     vehicleUpdated: any;
@@ -11,88 +12,91 @@ interface IForm {
 
 function NewCar(props:IForm){
 
+    const [form, setForm] = useState(props.vehicleUpdated);
+    const [name, setName] = useState(props.vehicleUpdated.name)
+    const [price, setPrice] = useState(props.vehicleUpdated.price)
+    const [color, setColor] = useState(props.vehicleUpdated.color)
+    const [year, setYear] = useState(props.vehicleUpdated.year)
+    const [description, setDescription] = useState(props.vehicleUpdated.description)
     useEffect(() => {
 
         if (props.vehicleUpdated) {
             setForm(() => props.vehicleUpdated)
         }
       }, []);
-
-
-    const vehicle: IVehicle = 
-        {
-          id: 1,
-          name: '',
-          description: '',
-          plate: '',
-          isFavorite: false,
-          year: 0,
-          color: '',
-          price: 0,
-          createdAt: new Date()
-        }
       
 
         const save = () => {
-            if (props.vehicleUpdated) {
-                editVehicle(form, form.id)
+            const vehicle = {
+                name: name,
+                price: price,
+                color: color,
+                year: year,
+                description: description,
+            }
+
+            if (props.vehicleUpdated.id) {
+                editVehicle(vehicle, props.vehicleUpdated.id)
             }else{
-                postVehicle(form)
+                postVehicle(vehicle)
             }
             
         }
+
+        const Container = styled.span`
+        display: inline-flex;
+        align-items: center;
+        width: 150px;
+        max-width: 150px;
+        border: 0px solid #bfc9d9;
+        border-radius: 50px;
       
-        const [form, setForm] = useState(vehicle);
-
-        const handleChange = (e:any) => {
-            console.log(e.target.getAttribute("name"))
-            switch (e.target.getAttribute("name")){
-                case "name":
-                    form["name"] = e.target.value
-                    break; 
-
-                case "price":
-                    form["price"] = e.target.value
-                    break; 
-
-                case "color":
-                    form["color"] = e.target.value
-                    break; 
-
-                case "year":
-                    form["year"] = e.target.value
-                    break; 
-
-                case "description":
-                    form["description"] = e.target.value
-                    break; 
-            }
-            
-            setForm(() => form);
+        input[type="color"] {
+          margin-right: 0px;
+          -webkit-appearance: none;
+          border: none;
+          width: auto;
+          height: auto;
+          cursor: pointer;
+          background: none;
+          &::-webkit-color-swatch-wrapper {
+            padding: 0;
+            width: 30px;
+            height: 30px;
+          }
+          &::-webkit-color-swatch {
+            border: 0px;
+            border-radius: 100px;
+            padding: 0;
+          }
         }
+
+        `;
 
     return(
         <form className={styles.box} onSubmit={save}>
-            <span>
+            <div className={styles.divBox}>
                 <h2>Nome</h2>
-                <input type="text" name="name" placeholder={form.name} onChange={handleChange} className={styles.spanB} required/>
+                <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} className={styles.spanB} required/>
 
                 <h2>Preço</h2>
-                <input type="number" name="price" value={form.price} onChange={handleChange} className={styles.spanB}required/>
+                <input type="number" name="price" value={price} onChange={(e) => setPrice(e.target.value)} className={styles.spanB} required/>
 
                 <h2>Cor</h2>
-                <input type="color" name="color" value={form.color} onChange={handleChange} className={styles.spanB} required/>
+                <Container>
+                    <input type="color" name="color" value={color} onChange={(e) => setColor(e.target.value)} className={styles.spanX} required/>
+                </Container>
 
                 <h2>Ano</h2>
-                <input type="text" name="year" value={form.year} onChange={handleChange} className={styles.spanB} required/>
+                <input type="text" name="year" value={year} onChange={(e) => setYear(e.target.value)} className={styles.spanB} required/>
                 
                 <h2>Descrição</h2>
-                <input type="text" name="description" value={form.description} onChange={handleChange} className={styles.spanB}required/>
+                <input type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)} className={styles.spanB} required/>
 
                 <div className={styles.buttonSave}>
                     <button className={styles.buttonB}>Salvar</button>
                 </div>
-            </span>
+            </div>
         </form>
     )
 }

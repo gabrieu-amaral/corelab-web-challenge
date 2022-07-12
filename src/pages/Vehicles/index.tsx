@@ -19,8 +19,19 @@ const VehiclesPage = () => {
   setFilteredCars(payload.data)
  };
 
+ const newIVehicle:IVehicle = {
+   id: null,
+   name: "",
+   description: "",
+   plate: "",
+   isFavorite: false,
+   year: null,
+   color: "",
+   price: null,
+   createdAt: null,
+ }
   useEffect(() => {
-
+    setVehicleUpdated(() => newIVehicle)
     fetchVehicles();
   }, []);
 
@@ -39,9 +50,20 @@ const VehiclesPage = () => {
     setAddNewCar(() => true)
   }
 
-  const handleSearch = (filter:string) => {
+  const handleSearch = (filter:any) => {
     console.log(filter)
-    let filtered = filter != "" ? vehicles.filter((vehicles) => vehicles.name.toLowerCase().includes(filter.toLowerCase())) : vehicles
+    let filtered = filter.name != "" ? vehicles.filter((vehicles) => vehicles.name.toLowerCase().includes(filter.name.toLowerCase())) : vehicles
+    
+    if(filter.name){
+      filtered = filter.name != "" ? filtered.filter((vehicles) => vehicles.name.toLowerCase().includes(filter.name.toLowerCase())) : filtered
+
+    }
+
+    if(filter.year){
+      filtered = filter.year != "" ? filtered.filter((vehicles) => vehicles.year?.toString().includes(filter.year.toLowerCase())) : filtered
+
+    }
+
     setFilteredCars(() => filtered) 
   }
 
@@ -54,6 +76,10 @@ const VehiclesPage = () => {
   const showNewCar = async () => {
   setAddNewCar(!addNewCar)
   fetchVehicles()
+
+  if(addNewCar) {
+    setVehicleUpdated (() => newIVehicle)
+  }
   }
 
   return (
@@ -62,16 +88,19 @@ const VehiclesPage = () => {
         <main className={styles.main}>
 
          <>
-          {!addNewCar ?  <Search placeholder="Buscar" onChange={handleSearch}/> : ""}
+          {!addNewCar ?  <Search handleSearch={handleSearch} placeholder="Buscar" onChange={handleSearch}/> : ""}
             
 
             <Button openNewCar={!addNewCar} text="ADCIONAR" onClick={showNewCar}/>
 
             {addNewCar ? <NewCar vehicleUpdated={vehicleUpdated} /> : null}
           
+            {!addNewCar ? 
+
             <div className={styles.cardsSpace}>
               {listCar()}
-            </div>
+            </div> : ""}
+            
          </>
 
         </main>

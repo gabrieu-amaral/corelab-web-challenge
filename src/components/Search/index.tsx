@@ -8,8 +8,10 @@ import styles from "./Search.module.scss"
 
 interface ISearch {
   placeholder: string;
-  onChange: Function;
+  onChange: any;
+  handleSearch: Function;
 }
+
 
 
 const Search = (props: ISearch) => {
@@ -23,6 +25,9 @@ const Search = (props: ISearch) => {
     setSearch(() => ev.target.value);
       props.onChange(ev.target.value)
   }
+  const sendFilter = (filter:any) => {
+    props.handleSearch(filter)
+  }
 
   return (
     <>
@@ -35,7 +40,7 @@ const Search = (props: ISearch) => {
       </div>
 
       
-      { filter ? "": ( <Filter /> )}
+      { filter ? "": ( <Filter search={sendFilter} /> )}
     
       
     </>
