@@ -1,5 +1,10 @@
 ## Sobre meu teste
 
+<p align="center">
+   <img src="public/gif geral-min.gif">
+</p>
+
+
 Olá, desculpa por não ter um vídeo, eu queria muito gravar explicando mas não consegui, gastei todo meu tempo fazendo tudo que consegui pro teste. Sem enrolação vamos para o resultado.
 
 Fiz todas as funcionalidades principais, com exceção dos filtros de cor e preço mínimo. Também caprichei no visual colocando até animações de favoritar e alguns extras como o futter para ficar com uma cara mais profissional.
