@@ -22,7 +22,7 @@ Espero que gostem do resultado 💙
 ## Parte da API ⚙
 
 esse projeto tem repositórios de front e api separados
-link da API: <a href:https://github.com/gabrieu-amaral/meu-primeiro-crud-API> </a>
+link da API: [Aqui 🔗](https://github.com/gabrieu-amaral/meu-primeiro-crud-API)
 
 ## Tecnologias 🧪
 
